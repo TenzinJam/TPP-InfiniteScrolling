@@ -1,0 +1,19 @@
+{
+  "name": "tpp-infinitescrolling",
+  "version": "1.0.0",
+  "description": "TTP assessment take home challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TenzinJam/TPP-InfiniteScrolling.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TenzinJam/TPP-InfiniteScrolling/issues"
+  },
+  "homepage": "https://github.com/TenzinJam/TPP-InfiniteScrolling#readme"
+}
