@@ -1,4 +1,4 @@
-[
+const data = [
   {
       "access": [],
       "additional_hide_reasons": [],
@@ -5774,3 +5774,5 @@
   }
 ]
 
+
+export default data
