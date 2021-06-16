@@ -1,5 +1,5 @@
 {
-  "name": "tpp-infinitescrolling",
+  "name": "tpp-infinite-scrolling",
   "version": "1.0.0",
   "description": "TTP assessment take home challenge",
   "main": "index.js",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/TenzinJam/TPP-InfiniteScrolling/issues"
   },
-  "homepage": "https://github.com/TenzinJam/TPP-InfiniteScrolling#readme"
+  "homepage": "https://github.com/TenzinJam/TPP-InfiniteScrolling#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "react": "^17.0.2"
+  }
 }
