@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import Pins from './components/Pins';
-import './App.css';
 
 class App extends Component {
   render() {

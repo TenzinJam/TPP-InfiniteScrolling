@@ -1,7 +1,6 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
-const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const data = require('./data')
 const PORT = process.env.PORT || 8080
 const app = express()
@@ -28,12 +27,11 @@ const createApp = () => {
   })
 
   app.get('/api/photos', (req, res) => {
-    req.query.page
-    req.query.limit
-    unsplash.photos
-      .listPhotos(req.query.start, req.query.count)
-      .then(toJson)
-      .then(json => res.json(json));
+    let start = req.query.page
+    let numberOfPhotos = req.query.limit
+
+    let photos = data.slice(start, numberOfPhotos+1)
+    res.send(photos)
   });
 
 
@@ -50,7 +48,6 @@ const startListening = () => {
   )
 }
 
-const syncDb = () => db.sync()
 
 async function bootApp() {
   await createApp()
