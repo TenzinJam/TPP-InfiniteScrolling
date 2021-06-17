@@ -27,6 +27,16 @@ const createApp = () => {
     res.sendFile(path.join(__dirname, '..', 'public/index.html'))
   })
 
+  app.get('/api/photos', (req, res) => {
+    req.query.page
+    req.query.limit
+    unsplash.photos
+      .listPhotos(req.query.start, req.query.count)
+      .then(toJson)
+      .then(json => res.json(json));
+  });
+
+
   app.use((err, req, res, next) => {
     console.error(err)
     console.error(err.stack)
