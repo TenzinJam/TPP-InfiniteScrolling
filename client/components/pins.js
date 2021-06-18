@@ -18,7 +18,6 @@ export class Pins extends Component {
     };
   }
 
-
   componentDidMount() {
     this.fetchImages(this.state.page)
     let options = {
@@ -31,10 +30,9 @@ export class Pins extends Component {
   }
 
   handleObserver(entities, observer){
-    const y = entities[0].boundClientRect.y
+    const y = entities[0].boundingClientRect.y
     if(this.state.previousPosition > y) {
-      const lastPhoto = this.state.pins[this.state.pins.length -1]
-      const curPage = lastPhoto.id
+      const curPage = this.state.page++
       this.fetchImages(curPage)
       this.setState( { page: curPage })
     }
@@ -43,7 +41,7 @@ export class Pins extends Component {
 
   async fetchImages(page) {
     this.setState({ loading: true })
-    let res = await axios.get(`.api/photos?page=${page}$limit=20`)
+    let res = await axios.get("/", { page, limit:20})
     this.setState( {pins: [...this.state.pins, ...res.data] })
     this.setState( { loading: false } )
   };
@@ -62,8 +60,7 @@ export class Pins extends Component {
       <div className="container">
         <div style={{ minHeight: "800px" }}>
           {this.state.pins.map(pin => (
-            <Pin key={pin.id} image={pin.images["136x136"]} />
-          ))}
+            <img src={pin.id} height="100px" width="200px" /> ))}
         </div>
         <div ref={loadingRef => (this.loadingRef = loadingRef)} style={loadingStyle}>
           <span style={loadingTextStyle}>Loading...</span>
@@ -73,4 +70,4 @@ export class Pins extends Component {
   }
 }
 
-export default Images;
+export default Pins;

@@ -5,27 +5,44 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "build-watch": "webpack -w",
+    "start": "npm run build-watch & npm run server"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TenzinJam/TPP-InfiniteScrolling.git"
   },
-  "author": "",
+  "author": "Tenzin Jamyang",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/TenzinJam/TPP-InfiniteScrolling/issues"
   },
   "homepage": "https://github.com/TenzinJam/TPP-InfiniteScrolling#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "axios": "^0.21.1",
     "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
+    "autoprefixer": "^10.2.6",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.6",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.1",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "postcss": "^8.3.5",
+    "postcss-loader": "^6.1.0",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.39.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
   }
 }

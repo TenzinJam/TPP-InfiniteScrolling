@@ -1,7 +1,7 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
-const data = require('./data')
+const data = require('../server/data')
 const PORT = process.env.PORT || 8080
 const app = express()
 module.exports = app
@@ -10,7 +10,7 @@ const createApp = () => {
   app.use(morgan('dev'))
   app.use(express.json())
   app.use(express.urlencoded({extended: true}))
-  app.use('/api', require('./api'))
+  // app.use('/api', require('./api'))
   app.use(express.static(path.join(__dirname, '..', 'public')))
   app.use((req, res, next) => {
     if (path.extname(req.path).length) {
@@ -23,15 +23,21 @@ const createApp = () => {
   })
 
   app.use('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+    res.sendFile(path.join(__dirname, 'public/index.html'))
   })
 
-  app.get('/api/photos', (req, res) => {
-    let start = req.query.page
-    let numberOfPhotos = req.query.limit
+  app.get('/', (req, res, next) => {
+    try{
 
-    let photos = data.slice(start, numberOfPhotos+1)
-    res.send(photos)
+      let numberOfPhotos = req.body.limit
+      let start = req.body.page * numberOfPhotos
+      let photos = data.slice(start, start + numberOfPhotos)
+      console.log(photos)
+      res.json(photos)
+    }
+    catch(err){
+      next(err)
+    }
   });
 
 
