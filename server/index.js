@@ -1,67 +1,56 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
-const data = require('../server/data')
+const data = require('./data')
 const PORT = process.env.PORT || 8080
 const app = express()
+const bodyParser = require('body-parser')
 module.exports = app
 
-const createApp = () => {
-  app.use(morgan('dev'))
-  app.use(express.json())
-  app.use(express.urlencoded({extended: true}))
-  // app.use('/api', require('./api'))
-  app.use(express.static(path.join(__dirname, '..', 'public')))
-  app.use((req, res, next) => {
-    if (path.extname(req.path).length) {
-      const err = new Error('Not found')
-      err.status = 404
-      next(err)
-    } else {
-      next()
-    }
-  })
-
-  app.use('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'))
-  })
-
-  app.get('/', (req, res, next) => {
-    try{
-
-      let numberOfPhotos = req.body.limit
-      let start = req.body.page * numberOfPhotos
-      let photos = data.slice(start, start + numberOfPhotos)
-      console.log(photos)
-      res.json(photos)
+app.use(morgan('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use(express.static(path.join(__dirname, '..', 'public')))
+console.log("inside")
+app.post('/', (req, res, next) => {
+  try{
+    let numberOfphotos = req.body.limit
+    let start = req.body.page * numberOfphotos
+    let photos = data.slice(start, start + numberOfphotos)
+    console.log("photos", photos)
+    res.json(data)
     }
     catch(err){
       next(err)
     }
-  });
-
-
-  app.use((err, req, res, next) => {
-    console.error(err)
-    console.error(err.stack)
-    res.status(err.status || 500).send(err.message || 'Internal server error.')
   })
-}
+app.use((req, res, next) => {
+  if (path.extname(req.path).length) {
+    const err = new Error('Not found')
+    err.status = 404
+    next(err)
+  } else {
+    next()
+  }
+})
+// app.use('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public/index.html'))
+// })
 
-const startListening = () => {
-  const server = app.listen(PORT, () =>
-    console.log(`Listening on port ${PORT}`)
-  )
-}
+//following api route is testing the server.
+app.get('/api', (req, res) => {
+  let numberOfphotos = Number(req.query.limit)
+  let start = Number(req.query.page) * numberOfphotos
+  let photos = data.slice(0, 2)
+  res.json(photos)
+})
 
+app.use((err, req, res, next) => {
+  console.error(err)
+  console.error(err.stack)
+  res.status(err.status || 500).send(err.message || 'Internal server error.')
+})
 
-async function bootApp() {
-  await createApp()
-  await startListening()
-}
-
-if (require.main === module) {
-  bootApp()
-} else {
-  createApp()
-}
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`))

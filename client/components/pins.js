@@ -39,13 +39,16 @@ export class Pins extends Component {
     this.setState( { previousPosition: y })
   }
 
-  async fetchImages(page) {
+  fetchImages(page) {
     this.setState({ loading: true })
-    let res = await axios.get("/", { page, limit:20})
-    this.setState( {pins: [...this.state.pins, ...res.data] })
-    this.setState( { loading: false } )
-  };
-
+    axios
+      .post(`/`, {page: page, limit: 20})
+      .then(res => {
+        console.log(res.data)
+        this.setState( {pins: this.state.pins.concat(res.data) })
+        this.setState( { loading: false } )
+    })
+  }
   render() {
 
     const loadingStyle = {
@@ -60,7 +63,7 @@ export class Pins extends Component {
       <div className="container">
         <div style={{ minHeight: "800px" }}>
           {this.state.pins.map(pin => (
-            <img src={pin.id} height="100px" width="200px" /> ))}
+            <img key={pin.id} src={pin.images["136x136"].url} /> ))}
         </div>
         <div ref={loadingRef => (this.loadingRef = loadingRef)} style={loadingStyle}>
           <span style={loadingTextStyle}>Loading...</span>
@@ -69,5 +72,6 @@ export class Pins extends Component {
     );
   }
 }
+
 
 export default Pins;
