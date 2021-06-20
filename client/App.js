@@ -1,25 +1,31 @@
 
 import React, { Component } from 'react';
 import Pins from './components/Pins';
-
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton'
+import MenuIcon from '@material-ui/core/MenuItem'
+import Typography from '@material-ui/core/Typography'
 class App extends Component {
   render() {
     return (
-      <div id='app'>
-        <div className='hero is-fullheight is-bold is-info'>
-          <div className='hero-body'>
-            <div className='container'>
-              <div className='header content'>
-                <h1 className='title is-1'>
-                  Infinite Scroll TTP Code Challenge
-                </h1>
-              </div>
-              <Pins />
-            </div>
-          </div>
+      <div id='root'>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" >
+              Kittens For Days
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <div className='container'>
+          <Pins />
         </div>
       </div>
     );
   }
 }
-export default App;
+
+export default App

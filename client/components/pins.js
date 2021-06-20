@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Pin from './Pin';
+import Grid from '@material-ui/core/Grid'
 
-export class Pins extends Component {
+class Pins extends Component {
 
   constructor(){
     super()
@@ -32,7 +33,7 @@ export class Pins extends Component {
   handleObserver(entities, observer){
     const y = entities[0].boundingClientRect.y
     if(this.state.previousPosition > y) {
-      const curPage = this.state.page++
+      const curPage = this.state.page + 1
       this.fetchImages(curPage)
       this.setState( { page: curPage })
     }
@@ -42,29 +43,41 @@ export class Pins extends Component {
   fetchImages(page) {
     this.setState({ loading: true })
     axios
-      .post(`/`, {page: page, limit: 20})
+      .post(`/`, {page: page, limit: 10})
       .then(res => {
-        console.log(res.data)
-        this.setState( {pins: this.state.pins.concat(res.data) })
+        this.setState( {pins: [...this.state.pins, ...res.data] })
         this.setState( { loading: false } )
     })
   }
+
+
+
+
   render() {
+    const myStyle = {
+      imageBatch: {
+          // display: flex,
+          alignItems: "center",
+          justifyContent: "center"
+      }
+    }
 
     const loadingStyle = {
       height: "100px",
       margin: "30px"
     }
 
+
+
     const loadingTextStyle = {display: this.state.loading ? "block" : "none" }
 
 
     return (
       <div className="container">
-        <div style={{ minHeight: "800px" }}>
+        <Grid container justify="center">
           {this.state.pins.map(pin => (
-            <img key={pin.id} src={pin.images["136x136"].url} /> ))}
-        </div>
+            <Pin key={pin.id} image={pin.images["136x136"].url}/> ))}
+        </Grid>
         <div ref={loadingRef => (this.loadingRef = loadingRef)} style={loadingStyle}>
           <span style={loadingTextStyle}>Loading...</span>
         </div>

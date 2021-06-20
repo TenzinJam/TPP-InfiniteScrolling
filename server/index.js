@@ -8,8 +8,6 @@ const bodyParser = require('body-parser')
 module.exports = app
 
 app.use(morgan('dev'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, '..', 'public')))
@@ -19,8 +17,8 @@ app.post('/', (req, res, next) => {
     let numberOfphotos = req.body.limit
     let start = req.body.page * numberOfphotos
     let photos = data.slice(start, start + numberOfphotos)
-    console.log("photos", photos)
-    res.json(data)
+    console.log("length", data.length)
+    res.send(photos)
     }
     catch(err){
       next(err)
