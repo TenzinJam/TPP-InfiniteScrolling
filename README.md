@@ -52,6 +52,7 @@ npm start
 
 #This is how the the actual experience should feel and look like:
 
+<img width="1437" alt="Screen Shot 2021-06-21 at 12 59 57 AM" src="https://user-images.githubusercontent.com/67336130/122709857-1e618180-d22d-11eb-8650-ac362390760e.png">
 
 
 
