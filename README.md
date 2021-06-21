@@ -50,7 +50,7 @@ npm start
 * Finally hit http://localhost:8080/
 
 
-###This is how the the actual experience should feel and look like:
+### This is how the the actual experience should feel and look like:
 
 <img width="1437" alt="Screen Shot 2021-06-21 at 12 59 57 AM" src="https://user-images.githubusercontent.com/67336130/122709857-1e618180-d22d-11eb-8650-ac362390760e.png">
 
@@ -65,8 +65,8 @@ This is the first page you will see and as you keep scrolling, the images should
 
 ## Authors
 
-Name: Tenzin Jamyang
-Email: jamyangu@gmail.com
+* Name: Tenzin Jamyang
+* Email: jamyangu@gmail.com
 
 
 
