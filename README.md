@@ -9,7 +9,7 @@ Challenge #1 - Infinite-Scroll
 
 The challange is to implement infinite scroll feature. Given a static dataset (JSON) of Pinterest Pins, design and implement a page that shows all the pins and allows infinite scrolling, reusing the Pins as needed. The implementation should be done in a modular way so that the rendering of Pins could be easily reused in other pages and this page could be given other widgets to arrange on the page and support infinite scrolling.
 
-Static data:[data-set](https://drive.google.com/file/d/1VHBpkiYaS-OqYBzL_ijhA-Etnb4HLtw7/view)
+Static data:  [data-set](https://drive.google.com/file/d/1VHBpkiYaS-OqYBzL_ijhA-Etnb4HLtw7/view)
 
 For reference, Pinterest's site: [Pinterest](https://www.pinterest.com/)
 
