@@ -54,7 +54,7 @@ npm start
 
 <img width="1437" alt="Screen Shot 2021-06-21 at 12 59 57 AM" src="https://user-images.githubusercontent.com/67336130/122709857-1e618180-d22d-11eb-8650-ac362390760e.png">
 
-
+This is the first page you will see and as you keep scrolling, the images should keep loading for ETERNITY!!!!!! or as long as you wish to. 
 
 ## Tech Stack
 * Javascript
