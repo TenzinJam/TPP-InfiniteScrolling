@@ -1,6 +1,6 @@
 # TPP-InfiniteScrolling
 
-To implement infinite scrolling resembling that of Pinterest. 
+To implement infinite scrolling resembling that of Pinterest's. 
 
 ## Description
 
@@ -55,7 +55,6 @@ npm start
 
 
 ## Tech Stack
-* Technologies
 * Javascript
 * React.js
 * Node.js
