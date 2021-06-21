@@ -16,10 +16,16 @@ app.post('/', (req, res, next) => {
   try{
     let numberOfphotos = req.body.limit
     let start = req.body.page * numberOfphotos
+    let length = data.length
     let photos = data.slice(start, start + numberOfphotos)
-    console.log("length", data.length)
-    res.send(photos)
+
+    if(length - start < 10 ||  length < start) {
+      photos = [...photos, ...data.slice(0, numberOfphotos - ((length - start)%numberOfphotos))]
     }
+    // console.log("start", start, "number", numberOfphotos)
+    // console.log("length", data.length)
+    res.send(photos)
+  }
     catch(err){
       next(err)
     }
@@ -33,11 +39,9 @@ app.use((req, res, next) => {
     next()
   }
 })
-// app.use('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public/index.html'))
-// })
 
-//following api route is testing the server.
+
+//following api route is for server testing purposes. Just type the endpoint, path and the queries "page" and "limit" as your desire.
 app.get('/api', (req, res) => {
   let numberOfphotos = Number(req.query.limit)
   let start = Number(req.query.page) * numberOfphotos

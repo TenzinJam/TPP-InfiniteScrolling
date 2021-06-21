@@ -51,8 +51,6 @@ class Pins extends Component {
   }
 
 
-
-
   render() {
     const myStyle = {
       imageBatch: {
@@ -73,10 +71,11 @@ class Pins extends Component {
 
 
     return (
-      <div className="container">
-        <Grid container justify="center">
+      <div className="container" style={{padding: "20px"}}>
+        <Grid container justify="center" style={{ paddingLeft: "20px"}}>
           {this.state.pins.map(pin => (
-            <Pin key={pin.id} image={pin.images["136x136"].url}/> ))}
+              <Pin key={pin.id} image={pin} style={{margin: 2}}/>
+            ))}
         </Grid>
         <div ref={loadingRef => (this.loadingRef = loadingRef)} style={loadingStyle}>
           <span style={loadingTextStyle}>Loading...</span>

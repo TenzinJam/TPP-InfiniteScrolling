@@ -1,31 +1,38 @@
 
 import React, { Component } from 'react';
 import Pins from './components/Pins';
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/core/MenuItem'
-import Typography from '@material-ui/core/Typography'
-class App extends Component {
-  render() {
-    return (
-      <div id='root'>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton>
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" >
-              Kittens For Days
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <div className='container'>
-          <Pins />
-        </div>
-      </div>
-    );
+import {ThemeProvider, createMuiTheme} from '@material-ui/core/styles'
+import { colors, AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu'
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: colors.blueGrey[500]
+    }
   }
+})
+function App() {
+    return (
+      <ThemeProvider theme={theme}>
+        <div id='root'>
+          <AppBar position="sticky"  style={{ borderRadius: "80px", paddingBottom: "20px" }}>
+            <Toolbar>
+              <IconButton>
+                <MenuIcon />
+              </IconButton>
+              <img src="/logo.png" alt="logo" style={{height: "40px"}}/>
+              <Typography variant="h6">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kittens For Days
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <div className='container'>
+            <Pins />
+          </div>
+        </div>
+      </ThemeProvider>
+    );
 }
 
 export default App
