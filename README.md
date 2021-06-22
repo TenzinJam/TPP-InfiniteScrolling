@@ -13,7 +13,7 @@ Static data:  [data-set](https://drive.google.com/file/d/1VHBpkiYaS-OqYBzL_ijhA-
 
 For reference, Pinterest's site: [Pinterest](https://www.pinterest.com/)
 
-The data set provides us with 41 "pins" but the task is to be able scroll infinitely with that limited number of pins. These pins are also retrieved at the rate of 10 pins per scroll. I opted to have my server serve up the data and not cache it on client's side because I wanted to practice my backend and it was a fun exercise. 
+The data set provides us with 41 "pins" but the task is to be able to scroll infinitely with that limited number of pins. These pins are also retrieved at the rate of 10 pins per scroll. I opted to have my server serve up the data and not cache it on client's side because I wanted to practice my backend and it was a fun exercise. 
 
 This project is build from scratch and not built on templates using create-react-app cli
 
